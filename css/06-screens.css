@@ -1,0 +1,113 @@
+/* ==========================================================================
+   ÉCRANS — Layout général + toast
+   ========================================================================== */
+
+/* ==========================================================================
+   6. ÉCRANS
+========================================================================== */
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: flex-start par défaut → le contenu commence en haut et scroll naturellement
+     Si contenu court → reste collé en haut, ce qui est OK.
+     Si contenu long → tout le contenu est accessible. */
+  justify-content: flex-start;
+  padding: 1.5rem;
+  padding-bottom: calc(max(1.5rem, env(safe-area-inset-bottom)) + 160px); /* place pour footer + notch */
+  padding-top: max(1.5rem, env(safe-area-inset-top));
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* scroll momentum iOS */
+  z-index: 10;
+}
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+/* Les écrans courts (login, splash) gardent leur centrage vertical */
+.screen.justify-center { justify-content: center; }
+
+/* Footer fixe : boutons d'action principaux toujours visibles (résultats, etc.) */
+.screen-footer {
+  position: fixed;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  z-index: 9100;
+  padding: 1.5rem 1rem 0.8rem 1rem;
+  background: linear-gradient(to bottom,
+    rgba(3, 3, 10, 0) 0%,
+    rgba(3, 3, 10, 0.6) 35%,
+    rgba(3, 3, 10, 0.95) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 35%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 35%, black 100%);
+}
+.screen-footer > * {
+  pointer-events: auto;
+  max-width: 640px;
+  margin: 0 auto;
+  display: block;
+}
+html.light-mode .screen-footer {
+  background: linear-gradient(to bottom,
+    rgba(250, 247, 242, 0) 0%,
+    rgba(250, 247, 242, 0.65) 35%,
+    rgba(250, 247, 242, 0.95) 100%) !important;
+}
+
+
+/* ==========================================================================
+   8. TOAST
+========================================================================== */
+#toast-container {
+  position: fixed;
+  top: max(1rem, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+  width: calc(100% - 2rem);
+  max-width: 420px;
+}
+.toast {
+  background: rgba(10,10,25,0.85);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-top: 1px solid rgba(255,255,255,0.28);
+  color: #fff;
+  padding: 0.9rem 1.25rem;
+  border-radius: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+             toastOut 0.4s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
+  pointer-events: auto;
+  text-align: center;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-20px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0)    scale(1); }
+  to   { opacity: 0; transform: translateY(-20px) scale(0.92); }
+}
+

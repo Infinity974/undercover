@@ -1,0 +1,31 @@
+/* ==========================================================================
+   GLASS — Cartes en verre transparent
+   ========================================================================== */
+
+/* ==========================================================================
+   3. FLOU TRANSPARENT (simplifié, pas de Liquid Glass bugué)
+========================================================================== */
+.glass {
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  transition: all 0.3s ease;
+}
+.glass:hover {
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.055);
+}
+
+.glass-sm {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+

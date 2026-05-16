@@ -1,0 +1,119 @@
+/* ==========================================================================
+   RÉSULTATS — Écran de fin + theme reminder
+   ========================================================================== */
+
+/* ==========================================================================
+   20. ÉCRAN RÉSULTATS
+========================================================================== */
+.results-hero {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.results-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),1) 0%, #fff 60%, rgba(var(--primary-rgb),1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 0.5rem 0;
+}
+.results-title.civils  { background: linear-gradient(135deg, rgba(var(--primary-rgb),1) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.results-title.impost  { background: linear-gradient(135deg, rgba(var(--secondary-rgb),1) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.results-title.mrwhite { background: linear-gradient(135deg, #a855f7 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+.results-role-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+
+/* ==========================================================================
+  RAPPEL DU THÈME (Sous la carte)
+========================================================================== */
+.theme-reminder {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  
+  /* Taille et placement */
+  max-width: 340px;
+  width: 100%;
+  margin: 1.25rem auto 0 auto;
+  padding: 0.85rem 1.1rem;
+  
+  /* Design FAKE GLASS (Haute performance) */
+  background: rgba(12, 12, 20, 0.85); /* Fond très sombre */
+  border: 1px solid rgba(var(--primary-rgb), 0.15);
+  border-top: 1px solid rgba(var(--primary-rgb), 0.35);
+  border-radius: var(--radius-md);
+  
+  /* Ombre classique, pas de flou */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.theme-reminder .theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 10px;
+  
+  /* Effet de lueur sur l'icône */
+  background: rgba(var(--primary-rgb), 0.12);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  color: rgba(var(--primary-rgb), 1);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.theme-reminder .theme-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.theme-reminder .theme-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.15rem;
+}
+
+.theme-reminder .theme-value {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+  COMPATIBILITÉ MODE CLAIR
+========================================================================== */
+html.light-mode .theme-reminder {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #ffffff;
+  box-shadow: 0 8px 24px rgba(100, 100, 140, 0.12);
+}
+
+html.light-mode .theme-reminder .theme-label {
+  color: rgba(26, 23, 20, 0.5);
+}
+
+html.light-mode .theme-reminder .theme-value {
+  color: #1a1714;
+}

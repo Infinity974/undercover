@@ -1,0 +1,669 @@
+/* ==========================================================================
+   17. MODE SOLO — Pass-and-play hors ligne (1 téléphone)
+   ========================================================================== */
+
+/* ----- Bouton "Mode 1 téléphone" sur l'écran login -----
+   Suit le thème actif (primary + accent) avec un effet glass + glow doux. */
+.btn-solo-launch {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  width: 100%;
+  padding: 1rem 1.15rem;
+  font-family: inherit;
+  color: #fff;
+  background:
+    linear-gradient(135deg,
+      rgba(var(--primary-rgb), 0.18) 0%,
+      rgba(var(--accent-rgb, var(--secondary-rgb)), 0.18) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(var(--primary-rgb), 0.4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+    0 6px 22px rgba(var(--primary-rgb), 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.22s cubic-bezier(0.34, 1.4, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+.btn-solo-launch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 70%
+  );
+  background-size: 220% 100%;
+  background-position: 100% 0;
+  pointer-events: none;
+  transition: background-position 0.85s ease;
+}
+.btn-solo-launch:hover {
+  transform: translateY(-2px);
+  border-color: rgba(var(--primary-rgb), 0.7);
+  background:
+    linear-gradient(135deg,
+      rgba(var(--primary-rgb), 0.28) 0%,
+      rgba(var(--accent-rgb, var(--secondary-rgb)), 0.28) 100%
+    ),
+    rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 12px 32px rgba(var(--primary-rgb), 0.28),
+    0 2px 8px rgba(var(--accent-rgb, var(--secondary-rgb)), 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+.btn-solo-launch:hover::before {
+  background-position: -20% 0;
+}
+.btn-solo-launch:active {
+  transform: translateY(0);
+}
+.btn-solo-launch-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(var(--primary-rgb), 0.5));
+}
+.btn-solo-launch-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.btn-solo-launch-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.005em;
+  color: #fff;
+}
+.btn-solo-launch-sub {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.btn-solo-launch-arrow {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: rgb(var(--primary-rgb));
+  opacity: 0.85;
+  transition: transform 0.22s ease, opacity 0.22s ease;
+}
+.btn-solo-launch:hover .btn-solo-launch-arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+/* ----- Intro / setup ----- */
+.solo-intro-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.875rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(var(--gold-rgb), 0.25);
+  border-radius: var(--radius-md);
+}
+.solo-intro-line {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
+}
+.solo-intro-line strong {
+  color: rgb(var(--gold-rgb));
+  font-weight: 700;
+}
+
+/* ----- Handoff screen (passe le téléphone) ----- */
+.solo-step-tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(var(--gold-rgb));
+  background: rgba(var(--gold-rgb), 0.12);
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+.solo-handoff-icon {
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  animation: soloPulse 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(var(--gold-rgb), 0.5));
+}
+@keyframes soloPulse {
+  0%, 100% { transform: scale(1) rotate(-4deg); }
+  50%      { transform: scale(1.08) rotate(4deg); }
+}
+.solo-handoff-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.solo-handoff-sub {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.45;
+}
+.solo-gradient {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--gold-rgb)),
+    rgb(var(--secondary-rgb))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.solo-input-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+/* ----- Carte révélation rôle ----- */
+.solo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  margin: 0.5rem 0 1.25rem;
+  animation: soloCardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes soloCardIn {
+  from { transform: scale(0.85) rotateY(-12deg); opacity: 0; }
+  to   { transform: scale(1)    rotateY(0);      opacity: 1; }
+}
+.solo-card-theme {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  margin-bottom: 0.75rem;
+  max-width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.solo-card-role-emoji {
+  font-size: 4.5rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.5));
+}
+.solo-card-role-label {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.25rem;
+}
+.solo-card-role-label.civil {
+  color: rgb(var(--success-rgb));
+  text-shadow: 0 0 24px rgba(var(--success-rgb), 0.45);
+}
+.solo-card-role-label.under {
+  color: rgb(var(--primary-rgb));
+  text-shadow: 0 0 24px rgba(var(--primary-rgb), 0.45);
+}
+.solo-card-role-label.mrwhite {
+  color: #fff;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.6);
+}
+.solo-card-divider {
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  margin: 0.5rem 0 0.75rem;
+}
+.solo-card-word-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.solo-card-word {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  background: linear-gradient(
+    135deg,
+    rgb(var(--gold-rgb)),
+    rgb(var(--secondary-rgb))
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-top: 0.25rem;
+  line-height: 1.15;
+  text-align: center;
+}
+.solo-card-tip {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 1rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* ----- Ordre de parole ----- */
+.solo-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0 1.25rem;
+}
+.solo-order-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  animation: soloOrderIn 0.4s ease-out backwards;
+}
+.solo-order-row:nth-child(1) { animation-delay: 0.05s; }
+.solo-order-row:nth-child(2) { animation-delay: 0.10s; }
+.solo-order-row:nth-child(3) { animation-delay: 0.15s; }
+.solo-order-row:nth-child(4) { animation-delay: 0.20s; }
+.solo-order-row:nth-child(5) { animation-delay: 0.25s; }
+.solo-order-row:nth-child(6) { animation-delay: 0.30s; }
+.solo-order-row:nth-child(7) { animation-delay: 0.35s; }
+.solo-order-row:nth-child(8) { animation-delay: 0.40s; }
+.solo-order-row:nth-child(9) { animation-delay: 0.45s; }
+.solo-order-row:nth-child(10){ animation-delay: 0.50s; }
+@keyframes soloOrderIn {
+  from { transform: translateX(-12px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+.solo-order-rank {
+  flex-shrink: 0;
+  width: 1.85rem;
+  height: 1.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: rgb(var(--gold-rgb));
+  background: rgba(var(--gold-rgb), 0.12);
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  border-radius: 50%;
+}
+.solo-order-avatar {
+  flex-shrink: 0;
+  font-size: 1.4rem;
+}
+.solo-order-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.95);
+}
+.solo-order-arrow {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ----- Liste de vote (boutons joueurs vivants) ----- */
+.solo-vote-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 1rem 0 1.25rem;
+}
+.solo-vote-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+}
+.solo-vote-btn:hover {
+  background: rgba(var(--primary-rgb), 0.12);
+  border-color: rgba(var(--primary-rgb), 0.55);
+  transform: translateY(-1px);
+}
+.solo-vote-btn:active {
+  transform: translateY(0);
+}
+.solo-vote-avatar {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.solo-vote-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.solo-vote-action {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(var(--primary-rgb));
+  opacity: 0.85;
+}
+
+/* ----- Élimination reveal ----- */
+@keyframes soloElimShake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+#screen-solo-elim .solo-card {
+  animation: soloCardIn 0.4s ease-out, soloElimShake 0.5s ease-out 0.4s;
+}
+
+/* ----- Fin de partie ----- */
+.solo-end-words {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.75rem 0 1.25rem;
+}
+.solo-end-word-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+}
+.solo-end-word-tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.solo-end-word-tag.civil {
+  color: rgb(var(--success-rgb));
+  background: rgba(var(--success-rgb), 0.12);
+  border: 1px solid rgba(var(--success-rgb), 0.3);
+}
+.solo-end-word-tag.under {
+  color: rgb(var(--primary-rgb));
+  background: rgba(var(--primary-rgb), 0.12);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+}
+.solo-end-word-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+.solo-end-roles-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0.75rem 0 0.5rem;
+  text-align: left;
+}
+.solo-end-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+.solo-end-role-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-sm);
+}
+.solo-end-role-row.civil  { border-left: 3px solid rgb(var(--success-rgb)); }
+.solo-end-role-row.under  { border-left: 3px solid rgb(var(--primary-rgb)); }
+.solo-end-role-row.mrwhite{ border-left: 3px solid #fff; }
+.solo-end-role-emoji {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.solo-end-role-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+.solo-end-role-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.solo-end-role-role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: left;
+}
+.solo-end-role-row.civil  .solo-end-role-role { color: rgb(var(--success-rgb)); }
+.solo-end-role-row.under  .solo-end-role-role { color: rgb(var(--primary-rgb)); }
+.solo-end-role-row.mrwhite .solo-end-role-role { color: rgba(255, 255, 255, 0.85); }
+.solo-end-role-word {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+.solo-end-dead {
+  opacity: 0.5;
+  filter: grayscale(0.5);
+}
+.solo-end-dead .solo-end-role-name::after {
+  content: " ✗";
+  color: rgba(var(--primary-rgb), 0.8);
+  font-weight: 800;
+}
+
+/* ----- Petits boutons ghost ----- */
+.btn-ghost-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.btn-ghost-sm:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ----- Picker Imitateur (visible sur la carte si rôle = IMITATEUR) ----- */
+.solo-imitator-picker {
+  width: 100%;
+  margin: 0.8rem 0 0.4rem;
+  padding: 1rem 1rem 0.85rem;
+  border: 1px solid rgba(var(--accent-rgb), 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(var(--accent-rgb), 0.08);
+  animation: soloOrderIn 0.4s ease-out;
+}
+.solo-imitator-picker-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgb(var(--accent-rgb));
+  margin: 0 0 0.3rem 0;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+.solo-imitator-picker-sub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 0.7rem 0;
+  text-align: center;
+  line-height: 1.4;
+}
+.solo-imitator-picker-sub strong {
+  color: #fff;
+  font-weight: 800;
+}
+.solo-imitator-targets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  max-height: 32vh;
+  overflow-y: auto;
+}
+.solo-imitator-target {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+.solo-imitator-target:hover {
+  background: rgba(var(--accent-rgb), 0.15);
+  border-color: rgba(var(--accent-rgb), 0.45);
+  transform: translateX(2px);
+}
+.solo-imitator-target-num {
+  flex-shrink: 0;
+  width: 1.65rem;
+  height: 1.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: rgb(var(--accent-rgb));
+  background: rgba(var(--accent-rgb), 0.18);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
+  border-radius: 50%;
+}
+.solo-imitator-target-label {
+  flex: 1;
+  font-size: 0.92rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.solo-imitator-target-go {
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.15s ease;
+}
+.solo-imitator-target:hover .solo-imitator-target-go {
+  transform: translateX(2px);
+  color: rgba(var(--accent-rgb), 1);
+}
+
+/* ----- Liste des alliés Undercover (option underConnus) ----- */
+.solo-card-allies {
+  width: 100%;
+  margin-top: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(var(--primary-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-rgb), 0.25);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+.solo-card-allies-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(var(--primary-rgb));
+  margin: 0 0 0.25rem 0;
+}
+.solo-card-allies-list {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ----- Responsive mobile : un peu plus serré ----- */
+@media (max-width: 480px) {
+  .solo-handoff-icon { font-size: 3.2rem; }
+  .solo-handoff-title { font-size: 1.25rem; }
+  .solo-card-role-emoji { font-size: 3.5rem; }
+  .solo-card-role-label { font-size: 1.25rem; }
+  .solo-card-word { font-size: 1.65rem; }
+}

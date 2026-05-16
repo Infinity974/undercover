@@ -1,0 +1,172 @@
+/* ==========================================================================
+   SPLASH SCREEN — Animation Undercover
+   ========================================================================== */
+
+/* ==========================================================================
+   5. SPLASH SCREEN — ANIMATION UNDERCOVER
+========================================================================== */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(ellipse at center, #0a0a18 0%, #03030a 70%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Grille rétro en fond */
+#splash-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--primary-rgb), 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--primary-rgb), 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+/* Point central (scan light) */
+#splash-screen::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 3px; height: 3px;
+  background: rgba(var(--primary-rgb), 1);
+  border-radius: 50%;
+  box-shadow: 0 0 40px 20px rgba(var(--primary-rgb), 0.8);
+  transform: translate(-50%, -50%);
+  animation: splashScan 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes splashScan {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+  15%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  70%  { opacity: 0.5; transform: translate(-50%, -50%) scale(8); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(40); }
+}
+
+.splash-mark {
+  position: relative;
+  z-index: 2;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Question mark → Silhouette */
+.splash-icon-q, .splash-icon-s {
+  position: absolute;
+  font-size: 6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),1), rgba(var(--secondary-rgb),1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 30px rgba(var(--primary-rgb),0.5));
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.splash-icon-q {
+  opacity: 0;
+  transform: scale(0.5) rotate(-15deg);
+}
+.splash-icon-s {
+  font-size: 5rem;
+  opacity: 0;
+  transform: scale(0.3);
+}
+
+#splash-screen.step-1 .splash-icon-q {
+  opacity: 1;
+  transform: scale(1) rotate(0);
+}
+#splash-screen.step-2 .splash-icon-q {
+  opacity: 0;
+  transform: scale(1.8) rotate(180deg);
+}
+#splash-screen.step-2 .splash-icon-s {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.splash-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  letter-spacing: 0.2em;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 4px 50px rgba(var(--primary-rgb), 0.4);
+}
+.splash-title span { display: inline-block; }
+.splash-title .gradient {
+  background: linear-gradient(135deg,
+    rgba(var(--primary-rgb),1) 0%,
+    #fff 50%,
+    rgba(var(--secondary-rgb),1) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.splash-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.5);
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s,
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s;
+  position: relative;
+  z-index: 2;
+}
+
+#splash-screen.step-2 .splash-title,
+#splash-screen.step-2 .splash-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#splash-screen.step-3 {
+  opacity: 0;
+  transform: scale(1.4);
+  pointer-events: none;
+}
+
+/* Scan-line effect */
+.splash-scanline {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--primary-rgb), 0.7) 50%, transparent 100%);
+  top: 0;
+  animation: scanlineMove 2.5s linear infinite;
+  z-index: 3;
+}
+@keyframes scanlineMove {
+  0%   { top: 0%; opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.7; }
+  100% { top: 100%; opacity: 0; }
+}
+

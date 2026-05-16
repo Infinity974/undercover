@@ -1,0 +1,214 @@
+/* ==========================================================================
+   FORMULAIRES — Toggles, counters, selects, premium switch
+   ========================================================================== */
+
+/* ==========================================================================
+   13. TOGGLE SWITCH (Liquid Glass)
+========================================================================== */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+}
+.toggle-row .toggle-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.85);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.toggle-row .toggle-hint {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+.toggle {
+  position: relative;
+  width: 48px;
+  height: 28px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: 3px;
+  width: 20px; height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.toggle.active {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),1), rgba(var(--accent-rgb),0.8));
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb),0.18);
+}
+.toggle.active::after { left: 23px; }
+
+/* ==========================================================================
+   14. NUMBER COUNTER (±)
+========================================================================== */
+.counter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+}
+.counter-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.counter {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.counter-btn {
+  width: 32px; height: 32px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; justify-content: center;
+}
+.counter-btn:hover { background: rgba(255,255,255,0.08); }
+.counter-btn:active { transform: scale(0.9); }
+.counter-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.counter-value {
+  min-width: 40px;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 0 0.35rem;
+}
+
+.info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: rgba(var(--primary-rgb),0.15);
+  color: rgba(var(--primary-rgb),1);
+  font-size: 0.6rem;
+  font-weight: 900;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   15. SELECT CUSTOM (pour gameMode, regleEgalite…)
+========================================================================== */
+.select-glass {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.select-glass:focus {
+  background-color: rgba(255,255,255,0.07);
+  border-color: rgba(var(--primary-rgb), 0.6);
+}
+.select-glass option { background: #0a0a18; color: #fff; }
+
+
+/* ==========================================================================
+  BOUTON TOGGLE PREMIUM (MODE FLUIDE)
+========================================================================== */
+.premium-switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 30px;
+  flex-shrink: 0; /* Empêche le bouton de s'écraser sur les petits écrans */
+}
+
+/* Cache la case à cocher d'origine */
+.premium-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Le fond de l'interrupteur (désactivé) */
+.premium-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 34px;
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Le cercle à l'intérieur */
+.premium-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quand le bouton est activé */
+.premium-switch input:checked + .slider {
+  /* Si tu as une variable --primary-rgb dans ton code, tu peux remplacer le background par : rgba(var(--primary-rgb), 1) */
+  background: linear-gradient(135deg, #6e8efb, #a777e3); 
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(167, 119, 227, 0.4);
+}
+
+/* Déplace le cercle quand activé */
+.premium-switch input:checked + .slider:before {
+  transform: translateX(24px);
+}
+

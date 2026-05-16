@@ -1,0 +1,266 @@
+/* ==========================================================================
+   MODALES — Génériques, règles, info, scoreboard
+   ========================================================================== */
+
+/* ==========================================================================
+   7. MODALES
+========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-overlay .modal-content {
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+
+/* ==========================================================================
+   10. RÈGLES MODALE
+========================================================================== */
+.rule-block {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-top: 1px solid rgba(255,255,255,0.16);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 0.9rem;
+}
+.rule-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+.rule-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 0.5rem;
+}
+.rule-line:last-child { margin-bottom: 0; }
+.rule-line strong { color: #fff; font-weight: 700; }
+.rule-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+/* Role chips */
+.role-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+  margin: 0.15rem;
+}
+
+
+/* ==========================================================================
+   17. INFO TOOLTIP MODAL (explication des rôles)
+========================================================================== */
+#infoModal .modal-content { max-width: 420px; padding: 1.5rem; text-align: left; }
+
+
+/* ==========================================================================
+   24. SCOREBOARD
+========================================================================== */
+.score-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.score-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+}
+.score-row.top {
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.18) 0%, rgba(255,255,255,0.03) 100%);
+  border-color: rgba(var(--gold-rgb),0.3);
+  border-top: 1px solid rgba(var(--gold-rgb),0.55);
+}
+.score-row.me {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),0.15) 0%, rgba(255,255,255,0.03) 100%);
+  border-color: rgba(var(--primary-rgb),0.4);
+  border-top: 1px solid rgba(var(--primary-rgb),0.7);
+}
+.score-row.top.me {
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.25) 0%, rgba(var(--primary-rgb),0.1) 100%);
+  border-color: rgba(var(--gold-rgb),0.4);
+  border-top: 1px solid rgba(var(--gold-rgb),0.7);
+}
+.score-rank {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.score-row.top .score-rank { color: rgba(var(--gold-rgb),1); }
+.score-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.score-points {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  color: rgba(var(--primary-rgb),1);
+}
+.score-diff {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  color: rgba(var(--success-rgb),1);
+  background: rgba(var(--success-rgb),0.12);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+}
+
+/* Tabs scoreboard */
+.tabs {
+  display: flex;
+  gap: 0.35rem;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  padding: 0.25rem;
+  margin-bottom: 0.6rem;
+}
+.tab {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  border: none;
+  background: transparent;
+}
+.tab:hover { color: rgba(255,255,255,0.8); }
+.tab.active {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),0.2) 0%, rgba(var(--accent-rgb),0.1) 100%);
+  color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* Titres honorifiques */
+.title-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  background: rgba(var(--gold-rgb),0.12);
+  border: 1px solid rgba(var(--gold-rgb),0.25);
+  border-radius: 999px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: rgba(var(--gold-rgb),1);
+  margin: 0.1rem;
+}
+
+.title-card {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.1) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(var(--gold-rgb),0.2);
+  border-top: 1px solid rgba(var(--gold-rgb),0.4);
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+.title-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 12px rgba(var(--gold-rgb), 0.35));
+}
+.title-content { flex: 1; min-width: 0; }
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.15rem;
+  flex-wrap: wrap;
+}
+.title-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.85rem;
+  color: rgba(var(--gold-rgb), 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.title-winner {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.8rem;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+.title-desc {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.4;
+}
+html.light-mode .title-winner { color: #1a1714 !important; background: rgba(0,0,0,0.08) !important; }
+html.light-mode .title-desc { color: rgba(26,23,20,0.65) !important; }
+
+.hidden { display: none !important; }
+

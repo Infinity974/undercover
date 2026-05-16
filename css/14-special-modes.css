@@ -1,0 +1,190 @@
+/* ==========================================================================
+   MODES SPÉCIAUX — Mr White, Duel PFC, Pouvoirs
+   ========================================================================== */
+
+/* ==========================================================================
+   21. MR WHITE GUESS
+========================================================================== */
+.guess-card {
+  background: linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(168,85,247,0.35);
+  border-top: 1px solid rgba(168,85,247,0.65);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+}
+
+/* Elimination message */
+.elimination-banner {
+  background: linear-gradient(135deg, rgba(var(--secondary-rgb),0.22) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(var(--secondary-rgb),0.4);
+  border-top: 1px solid rgba(var(--secondary-rgb),0.7);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #fff;
+  text-align: center;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+/* ==========================================================================
+   22. DUEL PFC (Pierre Feuille Ciseaux)
+========================================================================== */
+.duel-arena {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.5rem 0.5rem;
+}
+.duel-fighter {
+  text-align: center;
+  padding: 1rem 0.5rem;
+  animation: cardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.duel-fighter .fighter-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.duel-fighter .fighter-choice {
+  font-size: 4rem;
+  margin: 0.3rem 0;
+  filter: drop-shadow(0 8px 25px rgba(0,0,0,0.5));
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.duel-fighter .fighter-choice.revealed {
+  animation: pfcReveal 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) both;
+}
+@keyframes pfcReveal {
+  0%   { transform: scale(0.2) rotate(-180deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(10deg);   opacity: 1; }
+  100% { transform: scale(1)   rotate(0);        opacity: 1; }
+}
+.duel-fighter .fighter-status {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+.duel-fighter.winner {
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.18) 0%, rgba(255,255,255,0.03) 100%);
+  border: 1px solid rgba(var(--gold-rgb),0.3);
+  border-top: 1px solid rgba(var(--gold-rgb),0.6);
+  border-radius: var(--radius-lg);
+}
+.duel-fighter.loser {
+  opacity: 0.4;
+}
+.duel-vs {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+}
+
+.pfc-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.pfc-btn {
+  padding: 1.2rem 0.5rem;
+  font-size: 2.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.pfc-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255,255,255,0.1);
+  border-top-color: rgba(var(--primary-rgb),0.6);
+  box-shadow: 0 12px 30px rgba(var(--primary-rgb),0.2);
+}
+.pfc-btn:active { transform: scale(0.95); }
+.pfc-btn.chosen {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),0.35) 0%, rgba(var(--primary-rgb),0.15) 100%);
+  border-color: rgba(var(--primary-rgb),0.6);
+  border-top-color: rgba(var(--primary-rgb),0.95);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb),0.2);
+}
+
+
+/* ==========================================================================
+   23. ZONE POUVOIRS (Forceur, Imitateur, …)
+========================================================================== */
+.power-banner {
+  background: linear-gradient(135deg, rgba(var(--accent-rgb),0.2) 0%, rgba(var(--gold-rgb),0.1) 100%);
+  border: 1px solid rgba(var(--accent-rgb),0.35);
+  border-top: 1px solid rgba(var(--accent-rgb),0.7);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: cardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.power-banner .power-icon { font-size: 1.6rem; }
+.power-banner .power-text {
+  flex: 1;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  line-height: 1.35;
+}
+.power-banner .power-text strong {
+  color: rgba(var(--accent-rgb),1);
+  font-weight: 900;
+}
+.power-btn {
+  background: rgba(var(--accent-rgb),0.25);
+  border: 1px solid rgba(var(--accent-rgb),0.5);
+  color: #fff;
+  padding: 0.55rem 0.95rem;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+}
+.power-btn:hover { background: rgba(var(--accent-rgb),0.45); transform: translateY(-1px); }
+
+/* Forceur alert quand activé sur moi */
+.force-alert {
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.25) 0%, rgba(var(--accent-rgb),0.15) 100%);
+  border: 1px solid rgba(var(--gold-rgb),0.5);
+  border-top: 1px solid rgba(var(--gold-rgb),0.9);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  animation: pulseGold 1.5s ease-in-out infinite;
+}
+@keyframes pulseGold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--gold-rgb),0.3); }
+  50%      { box-shadow: 0 0 0 14px rgba(var(--gold-rgb),0); }
+}
+

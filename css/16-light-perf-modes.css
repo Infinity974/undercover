@@ -1,0 +1,265 @@
+/* ==========================================================================
+   MODES ALTERNATIFS — Light mode + Performances
+   ========================================================================== */
+
+/* ==========================================================================
+   26. MODE CLAIR (Light mode adaptatif par thème)
+========================================================================== */
+html.light-mode {
+  --primary-rgb: 30, 120, 180;
+  --secondary-rgb: 196, 50, 50;
+  --success-rgb: 5, 150, 105;
+  --accent-rgb: 128, 0, 128;
+  --gold-rgb: 184, 134, 11;
+}
+html.light-mode[data-theme="cyberpunk"] {
+  --primary-rgb: 0, 140, 160;
+  --secondary-rgb: 80, 0, 180;
+  --success-rgb: 20, 150, 20;
+  --accent-rgb: 180, 0, 90;
+}
+html.light-mode[data-theme="toxic"] {
+  --primary-rgb: 30, 160, 10;
+  --secondary-rgb: 0, 140, 100;
+  --success-rgb: 0, 150, 180;
+  --accent-rgb: 120, 180, 0;
+}
+html.light-mode[data-theme="synthwave"] {
+  --primary-rgb: 180, 0, 180;
+  --secondary-rgb: 0, 150, 150;
+  --success-rgb: 180, 180, 0;
+  --accent-rgb: 100, 30, 180;
+}
+
+html.light-mode, body.light-mode {
+  background-color: #faf7f2 !important;
+  color: #1a1714 !important;
+}
+html.light-mode .bg-orb-1 { background: radial-gradient(circle at 38% 38%, rgba(var(--primary-rgb),0.13) 0%, transparent 66%) !important; }
+html.light-mode .bg-orb-2 { background: radial-gradient(circle at 62% 62%, rgba(var(--secondary-rgb),0.11) 0%, transparent 66%) !important; }
+html.light-mode .bg-orb-3 { background: radial-gradient(circle at 50% 50%, rgba(var(--accent-rgb),0.09) 0%, transparent 66%) !important; }
+html.light-mode .bg-orb-4 { background: radial-gradient(circle at 50% 50%, rgba(var(--gold-rgb),0.09) 0%, transparent 66%) !important; }
+
+html.light-mode .glass {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+html.light-mode .glass-sm {
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+html.light-mode .input-glass {
+  background: rgba(255,255,255,0.95) !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  color: #1a1714 !important;
+}
+html.light-mode .input-glass::placeholder { color: rgba(0,0,0,0.4) !important; }
+html.light-mode .select-glass {
+  background-color: rgba(255,255,255,0.95) !important;
+  color: #1a1714 !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231a1714' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e") !important;
+}
+html.light-mode .select-glass option { background: #fff; color: #1a1714; }
+html.light-mode .btn-ghost {
+  background: rgba(0,0,0,0.05) !important;
+  border-color: rgba(0,0,0,0.15) !important;
+  color: #1a1714 !important;
+}
+html.light-mode .btn-ghost:hover { background: rgba(0,0,0,0.1) !important; }
+html.light-mode .btn-primary { color: #fff !important; }
+html.light-mode .btn-danger  { color: #fff !important; }
+html.light-mode .btn-gold    { color: #1a1714 !important; }
+html.light-mode .player-card,
+html.light-mode .player-pill,
+html.light-mode .vote-card,
+html.light-mode .rule-block,
+html.light-mode .settings-section,
+html.light-mode .score-row,
+html.light-mode .hist-item,
+html.light-mode .roles-banner,
+html.light-mode .turn-indicator,
+html.light-mode .power-banner,
+html.light-mode .force-alert,
+html.light-mode .elimination-banner,
+html.light-mode .balance-info,
+html.light-mode .mj-banner,
+html.light-mode .glass-sm,
+html.light-mode .counter {
+  background: rgba(255,255,255,0.85) !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #1a1714 !important;
+}
+/* Tous les textes blancs ou semi-transparents passent en sombre */
+html.light-mode,
+html.light-mode *:not(.btn-primary):not(.btn-danger):not(.btn-primary *):not(.btn-danger *):not(.badge-me):not(.role-chip):not(.title-badge):not(.vote-card-count):not(.score-diff):not(.btn-vote):not(.score-points):not(.fighter-name):not(.avatar) {
+  color: #1a1714 !important;
+}
+html.light-mode .flip-card-front,
+html.light-mode .flip-card-back,
+html.light-mode .flip-card-front *,
+html.light-mode .flip-card-back *,
+html.light-mode .splash-title,
+html.light-mode .avatar,
+html.light-mode .btn-primary,
+html.light-mode .btn-danger,
+html.light-mode .btn-primary *,
+html.light-mode .btn-danger * {
+  color: #fff !important;
+}
+html.light-mode .splash-title .gradient { -webkit-text-fill-color: transparent !important; }
+html.light-mode .results-title { -webkit-text-fill-color: transparent !important; }
+/* Textes sous-titrés (gris) → plus sombres pour contraste */
+html.light-mode [style*="color: rgba(255,255,255,0.65)"],
+html.light-mode [style*="color: rgba(255,255,255,0.6)"],
+html.light-mode [style*="color: rgba(255,255,255,0.5)"],
+html.light-mode [style*="color: rgba(255,255,255,0.45)"],
+html.light-mode [style*="color: rgba(255,255,255,0.4)"],
+html.light-mode [style*="color: rgba(255,255,255,0.35)"],
+html.light-mode [style*="color: rgba(255,255,255,0.3)"] {
+  color: rgba(26,23,20,0.6) !important;
+}
+html.light-mode [style*="color: rgba(255,255,255,0.2)"],
+html.light-mode [style*="color: rgba(255,255,255,0.25)"] {
+  color: rgba(26,23,20,0.4) !important;
+}
+html.light-mode .toast {
+  background: rgba(250,247,242,0.95) !important;
+  color: #1a1714 !important;
+  border: 1px solid rgba(0,0,0,0.15) !important;
+}
+html.light-mode #settings-notch {
+  background: rgba(255,255,255,0.85) !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+html.light-mode #settings-notch svg { color: rgba(0,0,0,0.7) !important; }
+html.light-mode #settings-notch span { color: rgba(0,0,0,0.6) !important; }
+html.light-mode .icon-btn { color: #1a1714 !important; }
+
+/* Offset pour laisser place au notch en bas */
+.screen {
+  padding-bottom: max(5rem, calc(env(safe-area-inset-bottom) + 4.5rem));
+}
+
+/* Settings icon btn */
+.icon-btn {
+  width: 42px; height: 42px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255,255,255,0.22);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  flex-shrink: 0;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+.icon-btn:active { transform: scale(0.95); }
+
+
+/* ==========================================================================
+  MODE HAUTES PERFORMANCES (Inspiré du design de ton pote)
+========================================================================== */
+
+/* 1. On fige le fond avec une belle lueur statique au lieu des orbes animées */
+body.low-end-mode {
+  background: var(--bg-dark) !important;
+}
+body.low-end-mode::before {
+  content: '';
+  position: fixed; inset: 0;
+  /* Crée un effet de lumière venant d'en haut comme dans le code de ton pote */
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%) !important;
+  pointer-events: none;
+  z-index: 0;
+}
+body.low-end-mode .bg-orb {
+  display: none !important; /* On supprime totalement les orbes lourdes */
+}
+
+/* 2. Le style de ton pote : Fond sombre riche + Bordures lumineuses */
+body.low-end-mode .glass, 
+body.low-end-mode .glass-sm, 
+body.low-end-mode .input-glass,
+body.low-end-mode .screen-footer,
+body.low-end-mode #settings-notch {
+  /* On coupe le flou qui fait ramer */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  /* On met un fond presque noir/opaque pour la lisibilité */
+  background: rgba(8, 8, 15, 0.95) !important; 
+  
+  /* L'astuce "Premium" de ton pote : une bordure colorée subtile */
+  border: 1px solid rgba(var(--primary-rgb), 0.15) !important;
+  border-top: 1px solid rgba(var(--primary-rgb), 0.35) !important;
+  
+  /* Une ombre noire classique, très facile à calculer pour le processeur */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* 3. On applique l'effet "Glow" (Lueur) de ton pote sur les boutons et inputs */
+body.low-end-mode .input-glass:focus {
+  background: rgba(15, 15, 25, 0.95) !important;
+  border-color: rgba(var(--primary-rgb), 0.6) !important;
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.2) !important;
+}
+
+body.low-end-mode .btn-primary {
+  /* Le même effet de lueur que le bouton primaire de ton pote */
+  box-shadow: 0 4px 18px rgba(var(--primary-rgb), 0.38), inset 0 1px 0 rgba(255,255,255,0.18) !important;
+}
+
+/* 4. On coupe les animations continues (les tueurs de CPU) et on les remplace par des lueurs fixes */
+body.low-end-mode .pulse-ring,
+body.low-end-mode .force-alert {
+  animation: none !important;
+  border: 1px solid rgba(var(--primary-rgb), 0.8) !important;
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4) !important; /* Lueur statique au lieu d'une pulsation animée */
+}
+
+body.low-end-mode .wait-dots span {
+  /* Optionnel : on empêche les petits points de rebondir en permanence */
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+
+/* ==========================================================================
+  COMPATIBILITÉ : MODE FLUIDE + MODE CLAIR
+========================================================================== */
+html.light-mode body.low-end-mode {
+  background: #faf7f2 !important; /* Le fond clair de ton thème */
+}
+
+html.light-mode body.low-end-mode::before {
+  /* Lueur beaucoup plus douce et claire en haut */
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--primary-rgb), 0.08) 0%, transparent 70%) !important;
+}
+
+html.light-mode body.low-end-mode .glass, 
+html.light-mode body.low-end-mode .glass-sm, 
+html.light-mode body.low-end-mode .input-glass,
+html.light-mode body.low-end-mode .screen-footer,
+html.light-mode body.low-end-mode #settings-notch {
+  /* On remplace le noir par du blanc presque totalement opaque */
+  background: rgba(255, 255, 255, 0.95) !important; 
+  
+  /* Bordures adaptées au mode clair (grisé subtil) */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-top: 1px solid #ffffff !important;
+  
+  /* Ombre claire et douce au lieu du noir profond */
+  box-shadow: 0 8px 24px rgba(100, 100, 140, 0.12) !important;
+}
+
+html.light-mode body.low-end-mode .input-glass:focus {
+  background: #ffffff !important;
+  border-color: rgba(var(--primary-rgb), 0.5) !important;
+  box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.15) !important;
+}
+

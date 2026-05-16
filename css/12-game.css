@@ -1,0 +1,164 @@
+/* ==========================================================================
+   GAME — Écran de jeu, indices, historique, récap + animations
+   ========================================================================== */
+
+/* ==========================================================================
+   19. GAME SCREEN — Indices / Historique / Récap
+========================================================================== */
+.turn-indicator {
+  background: linear-gradient(135deg, rgba(var(--primary-rgb),0.18) 0%, rgba(var(--accent-rgb),0.1) 100%);
+  border: 1px solid rgba(var(--primary-rgb),0.3);
+  border-top: 1px solid rgba(var(--primary-rgb),0.55);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: #fff;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.turn-indicator.my-turn {
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.25) 0%, rgba(var(--primary-rgb),0.12) 100%);
+  border-color: rgba(var(--gold-rgb),0.5);
+  border-top-color: rgba(var(--gold-rgb),0.8);
+  animation: pulseMyTurn 2s ease-in-out infinite;
+}
+@keyframes pulseMyTurn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--gold-rgb),0.3); }
+  50%      { box-shadow: 0 0 0 14px rgba(var(--gold-rgb),0); }
+}
+
+.hist-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.35rem;
+  animation: cardIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hist-item strong { color: #fff; font-weight: 800; }
+.hist-round-sep {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(var(--primary-rgb),1);
+  padding: 0.5rem 0 0.35rem 0;
+  border-bottom: 1px solid rgba(var(--primary-rgb),0.18);
+  margin: 0.6rem 0 0.45rem 0;
+}
+.hist-round-sep:first-child { margin-top: 0; }
+
+/* Pill de joueur avec statut */
+.player-pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.player-pill.is-turn {
+  border-color: rgba(var(--gold-rgb),0.4);
+  border-top-color: rgba(var(--gold-rgb),0.7);
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.12) 0%, rgba(255,255,255,0.03) 100%);
+}
+.player-pill.is-dead {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+.player-pill.voted-for {
+  border-color: rgba(var(--secondary-rgb),0.5);
+  border-top-color: rgba(var(--secondary-rgb),0.8);
+  background: linear-gradient(135deg, rgba(var(--secondary-rgb),0.15) 0%, rgba(255,255,255,0.03) 100%);
+}
+.player-pill .pill-name {
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #fff;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.player-pill .pill-indice {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.btn-vote {
+  padding: 0.35rem 0.7rem;
+  background: rgba(var(--secondary-rgb),0.15);
+  border: 1px solid rgba(var(--secondary-rgb),0.3);
+  color: rgba(var(--secondary-rgb),1);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  flex-shrink: 0;
+}
+.btn-vote:hover { background: rgba(var(--secondary-rgb),0.3); }
+.btn-vote.active {
+  background: rgba(var(--secondary-rgb),0.9);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(var(--secondary-rgb),0.3);
+}
+
+/* Rôles restants banner */
+.roles-banner {
+  background: rgba(10,10,25,0.45);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ==========================================================================
+   12. UTILS & ANIMATIONS
+========================================================================== */
+.pulse-ring {
+  animation: pulseRing 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+@keyframes pulseRing {
+  0%   { box-shadow: 0 0 0 0   rgba(var(--primary-rgb), 0.4); }
+  70%  { box-shadow: 0 0 0 18px rgba(var(--primary-rgb), 0); }
+  100% { box-shadow: 0 0 0 0   rgba(var(--primary-rgb), 0); }
+}
+
+.shake { animation: shake 0.5s cubic-bezier(0.36, 0, 0.66, -0.56); }
+@keyframes shake {
+  10%, 90%  { transform: translateX(-2px); }
+  20%, 80%  { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60%  { transform: translateX(6px); }
+}
+
+.fade-up { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

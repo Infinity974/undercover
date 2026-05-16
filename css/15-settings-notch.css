@@ -1,0 +1,115 @@
+/* ==========================================================================
+   NOTCH PARAMÈTRES — Style Mamie Moule Maki
+   ========================================================================== */
+
+/* ==========================================================================
+   25. NOTCH PARAMÈTRES (style Mamie Moule Maki)
+========================================================================== */
+/* Fond opaque qui empêche le contenu de passer derrière le notch */
+#settings-notch-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--notch-h) + env(safe-area-inset-bottom, 0px));
+  background: var(--bg-dark);
+  z-index: 8999;
+  pointer-events: none;
+}
+html.light-mode #settings-notch-bg {
+  background: #faf7f2 !important;
+}
+
+#settings-notch {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-bottom: none;
+  padding: 0.4rem 2rem 0.25rem 2rem;
+  border-radius: 18px 18px 0 0;
+  z-index: 9000;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.42);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background 0.3s ease;
+  padding-bottom: max(0.25rem, env(safe-area-inset-bottom));
+}
+#settings-notch:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(-50%) translateY(-3px);
+}
+#settings-notch svg { color: rgba(255,255,255,0.75); transition: color 0.3s ease; }
+#settings-notch:hover svg { color: #fff; }
+#settings-notch span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* Settings sections */
+.settings-section {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.8rem;
+}
+.settings-section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.8rem;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 0.55rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.theme-option:hover { background: rgba(255,255,255,0.1); }
+.theme-option:has(input:checked) {
+  border-color: rgba(var(--primary-rgb), 0.6);
+  background: rgba(var(--primary-rgb), 0.1);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.18);
+}
+.theme-option input { display: none; }
+.theme-option .theme-dot {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.theme-option span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.85);
+}
+

@@ -1,0 +1,110 @@
+/* ==========================================================================
+   LOBBY — Joueurs + code display
+   ========================================================================== */
+
+/* ==========================================================================
+   9. JOUEURS DANS LE LOBBY
+========================================================================== */
+.player-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  animation: cardIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.player-card:hover {
+  background: rgba(255,255,255,0.07);
+  transform: translateX(3px);
+}
+.player-card.is-host {
+  border: 1px solid rgba(var(--gold-rgb), 0.35);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.55);
+  background: linear-gradient(135deg, rgba(var(--gold-rgb), 0.08) 0%, rgba(255,255,255,0.03) 100%);
+}
+.player-card.is-me {
+  border: 1px solid rgba(var(--primary-rgb), 0.4);
+  border-top: 1px solid rgba(var(--primary-rgb), 0.6);
+}
+.player-card.is-bot {
+  opacity: 0.85;
+  border-style: dashed;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.badge-me {
+  font-size: 0.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(var(--primary-rgb), 1);
+  background: rgba(var(--primary-rgb), 0.12);
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+}
+.player-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 2px;
+}
+.player-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.kick-btn {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 10px !important;
+  background: rgba(var(--secondary-rgb), 0.12) !important;
+  border-color: rgba(var(--secondary-rgb), 0.25) !important;
+}
+.kick-btn:hover { background: rgba(var(--secondary-rgb), 0.25) !important; }
+
+.avatar {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.8), rgba(var(--accent-rgb), 0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 4px 15px rgba(0,0,0,0.3);
+}
+
+
+/* ==========================================================================
+   11. CODE DISPLAY (Salon)
+========================================================================== */
+.code-display {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 2rem;
+  letter-spacing: 0.4em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(var(--primary-rgb), 0.6);
+}
+
